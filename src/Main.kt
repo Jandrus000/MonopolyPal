@@ -1,13 +1,14 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 abstract class Random
-
+// The `MonopolyPal` class represents the Monopoly game manager and contains methods for managing properties,
+// money, rolling dice, and printing game rules.
 class MonopolyPal {
 
     // standard starting amount
     var wallet = 1500
 
-    // Name, owned, mortgaged, how many houses/hotel
+    // List of properties in the Monopoly game, initially unowned
     var properties = mutableListOf(
         Property("Mediterranean Avenue"),
         Property("Baltic Avenue"),
@@ -40,6 +41,7 @@ class MonopolyPal {
         Property("Eletric Company")
     )
 
+    // Method to display the properties currently owned by the player
     fun displayProperties() {
         var displayed = false
         var moreThanOne = false
@@ -63,11 +65,14 @@ class MonopolyPal {
 
     }
 
+    // Inner class representing a Monopoly property
     class Property(Name: String) {
         var name = Name
         var owned = false
         var mortgaged = false
         var houses = 0
+
+        // Method to represent the type of house structure (houses or hotel)
 
         fun houseType(): String{
             var structure = ""
@@ -84,6 +89,7 @@ class MonopolyPal {
 
     }
 
+    // method to add a property to properties owned
     fun addProperty() {
         var counter = 1
         var empty = true
@@ -121,6 +127,7 @@ class MonopolyPal {
         }
     }
 
+    // method to remove a property from owned properties
     fun removeProperty() {
         var empty = false
         var counter = 1
@@ -158,6 +165,7 @@ class MonopolyPal {
         }
     }
 
+    //method to mortgage properties
     fun mortgageProperty() {
         var counter = 1
         var empty = true
@@ -189,6 +197,7 @@ class MonopolyPal {
         }
     }
 
+    // method to un-mortgage property
     fun unmortgageProperty(){
         var counter = 1
         var empty = true
@@ -218,6 +227,7 @@ class MonopolyPal {
         }
     }
 
+    // method to build a house
     fun buildHouse(){
         var counter = 1
         var empty = true
@@ -249,6 +259,7 @@ class MonopolyPal {
         }
     }
 
+    // method to sell house
     fun sellHouse(){
         var counter = 1
         var empty = true
@@ -280,6 +291,7 @@ class MonopolyPal {
         }
     }
 
+    // method to print rules
     fun printRules(){
         var rules =
             """
@@ -330,6 +342,7 @@ From 1936, the rules booklet included with each Monopoly set contained a short s
         print(rules)
     }
 
+    //method to add and subtract money
     fun manageMoney(){
         print("Add money by entering a number (enter a negative number to deduct money) >")
         var input = readln()
@@ -343,6 +356,7 @@ From 1936, the rules booklet included with each Monopoly set contained a short s
 
     }
 
+    // method that rolls dice
     fun rollDice(){
         var dice1 = (1..6).random()
         var dice2 = (1..6).random()
@@ -352,12 +366,13 @@ From 1936, the rules booklet included with each Monopoly set contained a short s
 
 }
 
+// method that is used throughout program when answer is invalid
     fun invalid() {
         print("Invalid choice")
         Thread.sleep(1000)
     }
 
-
+    // main is the menu system that call respective methods to perform program capabilities
     fun main() {
         var myMonopolyPal = MonopolyPal()
         var input = "0"
